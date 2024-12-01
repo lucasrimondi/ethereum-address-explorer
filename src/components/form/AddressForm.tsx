@@ -27,8 +27,6 @@ export function AddressForm() {
     setAddress(value)
     if (!value) {
       setError('')
-    } else if (!value.startsWith('0x')) {
-      setError('Address must start with 0x')
     } else if (!isValidEthereumAddress(value)) {
       setError('Invalid Ethereum address')
     } else {
@@ -37,20 +35,24 @@ export function AddressForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-lg">
-      <div className="flex items-center gap-4 rounded-lg bg-secondary p-4">
-        <Input
-          type="text"
-          value={address}
-          onChange={(e) => handleAddressChange(e.target.value)}
-          placeholder="0x..."
-          error={error}
-          disabled={isLoading}
-          className="flex-1"
-        />
+    <form onSubmit={handleSubmit} className="w-full max-w-3xl px-4">
+      <div className="flex items-start gap-3 rounded-lg bg-secondary p-3 sm:gap-4 sm:p-4">
+        <div className="relative flex-1">
+          <Input
+            type="text"
+            value={address}
+            onChange={(e) => handleAddressChange(e.target.value)}
+            placeholder="0x..."
+            error={error}
+            disabled={isLoading}
+            className="w-full font-mono text-sm sm:text-base"
+            style={{ letterSpacing: '0.5px' }}
+            maxLength={42}
+          />
+        </div>
         <div
           className={clsx(
-            'bg-arrow-badge flex h-10 w-10 items-center justify-center rounded-full transition-all',
+            'bg-arrow-badge flex h-12 w-16 shrink-0 items-center justify-center rounded-full transition-all',
             {
               'cursor-not-allowed opacity-50': !isValid || isLoading,
               'hover:bg-arrow-badge/80 cursor-pointer': isValid && !isLoading,
@@ -64,18 +66,13 @@ export function AddressForm() {
             aria-label="Submit address"
           >
             {isLoading ? (
-              <Loader2 className="h-5 w-5 animate-spin text-secondary" />
+              <Loader2 className="h-7 w-7 animate-spin text-secondary" />
             ) : (
-              <ArrowRight className="h-5 w-5 text-secondary" />
+              <ArrowRight className="h-8 w-8 text-secondary" />
             )}
           </button>
         </div>
       </div>
-      {error && (
-        <p className="mt-2 text-sm text-red-500" role="alert">
-          {error}
-        </p>
-      )}
     </form>
   )
 }

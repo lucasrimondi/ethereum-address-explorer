@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import clsx from 'clsx'
 
 interface BadgeProps {
   children: ReactNode
@@ -8,7 +9,10 @@ interface BadgeProps {
 export function Badge({ children, className = '' }: BadgeProps) {
   return (
     <span
-      className={`inline-block rounded-full bg-secondary px-8 py-6 text-primary ${className}`}
+      className={clsx(
+        'inline-block rounded-full bg-secondary px-8 py-6 text-primary',
+        className
+      )}
     >
       {children}
     </span>
