@@ -5,10 +5,11 @@ import { ArrowRight } from 'lucide-react'
 import { isValidEthereumAddress } from '@/lib/validation'
 import { Input } from '@/components/ui/Input'
 import { IconButton } from '../ui/IconButton'
+import { WalletBalance } from '../wallet/WalletBalance'
 
 export function AddressForm() {
   const [address, setAddress] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const [submittedAddress, setSubmittedAddress] = useState('')
   const [error, setError] = useState('')
 
   const isValid = address && isValidEthereumAddress(address)
@@ -17,10 +18,8 @@ export function AddressForm() {
     e.preventDefault()
     if (!isValid) return
 
-    setIsLoading(true)
-    // TODO: Handle form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsLoading(false)
+    setSubmittedAddress(address)
+    setAddress('')
   }
 
   const handleAddressChange = (value: string) => {
@@ -35,29 +34,34 @@ export function AddressForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full px-2  sm:px-4 ">
-      <div className="flex items-start gap-3 rounded-2xl bg-secondary p-6 sm:gap-4 sm:p-10">
-        <div className="relative flex-1">
-          <Input
-            type="text"
-            value={address}
-            onChange={(e) => handleAddressChange(e.target.value)}
-            placeholder="0x..."
-            error={error}
-            disabled={isLoading}
-            className="w-full font-mono text-sm sm:text-base"
-            style={{ letterSpacing: '0.5px' }}
-            maxLength={42}
+    <div className="flex w-full flex-col gap-6">
+      <form onSubmit={handleSubmit} className="w-full px-2 sm:px-4">
+        <div className="flex items-start gap-3 rounded-2xl bg-secondary p-6 sm:gap-4 sm:p-10">
+          <div className="relative flex-1">
+            <Input
+              type="text"
+              value={address}
+              onChange={(e) => handleAddressChange(e.target.value)}
+              placeholder="0x..."
+              error={error}
+              className="w-full font-mono text-sm sm:text-base"
+              style={{ letterSpacing: '0.5px' }}
+              maxLength={42}
+            />
+          </div>
+          <IconButton
+            type="submit"
+            icon={<ArrowRight />}
+            disabled={!isValid}
+            aria-label="Submit address"
           />
         </div>
-        <IconButton
-          type="submit"
-          icon={<ArrowRight />}
-          disabled={!isValid}
-          isLoading={isLoading}
-          aria-label="Submit address"
-        />
-      </div>
-    </form>
+      </form>
+      {submittedAddress && (
+        <div className="w-full px-2 sm:px-4">
+          <WalletBalance address={submittedAddress} />
+        </div>
+      )}
+    </div>
   )
 }

@@ -14,6 +14,7 @@ module.exports = {
         input: '#363636',
         'arrow-badge': '#0b88f0',
         header: '#008849',
+        wallet: '#ffb800',
       },
       backgroundColor: {
         background: '#9a9a9a',
@@ -23,6 +24,7 @@ module.exports = {
         'arrow-badge': '#0b88f0',
         footer: '#ff573a',
         header: '#008849',
+        wallet: '#ffb800',
       },
       textColor: {
         primary: '#FFFFFF',
