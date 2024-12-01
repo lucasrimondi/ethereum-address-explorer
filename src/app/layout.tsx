@@ -10,8 +10,8 @@ const spaceMono = Space_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Next.js App',
-  description: 'Created with Next.js, TypeScript, and Tailwind CSS',
+  title: 'reXplorer',
+  description: 'explore your ethereum address',
 }
 
 export default function RootLayout({
@@ -21,9 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
-      <body
-        className={`${spaceMono.className} flex min-h-screen flex-col bg-background p-4`}
-      >
+      <body className={`${spaceMono.className} flex min-h-screen flex-col p-4`}>
         <main className="flex flex-1 flex-col px-4 py-6">
           <div className="flex-1 rounded-2xl bg-primary">{children}</div>
         </main>
