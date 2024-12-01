@@ -22,11 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${spaceMono.className} flex min-h-screen w-full flex-col bg-background p-4`}
+        className={`${spaceMono.className} flex min-h-screen flex-col bg-background p-4`}
       >
-        <div className="flex flex-1 flex-col px-4 py-6">
+        <main className="flex flex-1 flex-col px-4 py-6">
           <div className="flex-1 rounded-2xl bg-primary">{children}</div>
-        </div>
+        </main>
         <Footer />
       </body>
     </html>

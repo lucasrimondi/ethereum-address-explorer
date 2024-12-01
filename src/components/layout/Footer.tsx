@@ -6,13 +6,13 @@ import Link from 'next/link'
 export function Footer() {
   return (
     <footer className="w-full px-4 py-6">
-      <div className="bg-footer mx-auto w-full rounded-2xl">
-        <div className="flex w-full items-center justify-between px-6 py-6 sm:py-8">
-          <div className="flex flex-col items-center space-y-0.5">
-            <p className="text-justify text-xs font-medium text-secondary sm:text-sm">
+      <div className="mx-auto w-full rounded-2xl bg-footer">
+        <div className="flex flex-col items-center justify-between gap-6 px-6 py-6 sm:flex-row sm:py-8">
+          <div className="flex flex-col items-center space-y-0.5 text-center sm:text-left">
+            <p className="text-xs font-medium text-secondary sm:text-base md:text-lg">
               reXplorer @ reown Frontend Challenge
             </p>
-            <p className="text-justify text-xs text-secondary sm:text-sm">
+            <p className="text-xs text-secondary sm:text-base md:text-lg">
               by Lucas Rimondi
             </p>
           </div>
@@ -27,7 +27,7 @@ export function Footer() {
               alt="GitHub"
               width={32}
               height={32}
-              className="h-8 w-8"
+              className="h-8 w-8 sm:h-12 sm:w-12"
             />
           </Link>
         </div>

@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
-import { ArrowRight, Loader2 } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { isValidEthereumAddress } from '@/lib/validation'
 import { Input } from '@/components/ui/Input'
-import clsx from 'clsx'
+import { IconButton } from '@/components/ui/IconButton'
 
 export function AddressForm() {
   const [address, setAddress] = useState('')
@@ -50,28 +50,13 @@ export function AddressForm() {
             maxLength={42}
           />
         </div>
-        <div
-          className={clsx(
-            'bg-arrow-badge flex h-12 w-16 shrink-0 items-center justify-center rounded-full transition-all',
-            {
-              'cursor-not-allowed opacity-50': !isValid || isLoading,
-              'hover:bg-arrow-badge/80 cursor-pointer': isValid && !isLoading,
-            }
-          )}
-        >
-          <button
-            type="submit"
-            disabled={!isValid || isLoading}
-            className="flex h-full w-full items-center justify-center"
-            aria-label="Submit address"
-          >
-            {isLoading ? (
-              <Loader2 className="h-7 w-7 animate-spin text-secondary" />
-            ) : (
-              <ArrowRight className="h-8 w-8 text-secondary" />
-            )}
-          </button>
-        </div>
+        <IconButton
+          type="submit"
+          icon={<ArrowRight />}
+          disabled={!isValid}
+          isLoading={isLoading}
+          aria-label="Submit address"
+        />
       </div>
     </form>
   )
