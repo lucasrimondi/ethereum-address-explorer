@@ -4,7 +4,7 @@ import { useState, FormEvent } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { isValidEthereumAddress } from '@/lib/validation'
 import { Input } from '@/components/ui/Input'
-import { IconButton } from '@/components/ui/IconButton'
+import { IconButton } from '../ui/IconButton'
 
 export function AddressForm() {
   const [address, setAddress] = useState('')
@@ -35,8 +35,8 @@ export function AddressForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-3xl px-4">
-      <div className="flex items-start gap-3 rounded-lg bg-secondary p-3 sm:gap-4 sm:p-4">
+    <form onSubmit={handleSubmit} className="w-full px-2  sm:px-4 ">
+      <div className="flex items-start gap-3 rounded-2xl bg-secondary p-6 sm:gap-4 sm:p-10">
         <div className="relative flex-1">
           <Input
             type="text"

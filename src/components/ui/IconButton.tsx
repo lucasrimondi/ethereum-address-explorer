@@ -20,9 +20,9 @@ export function IconButton({
     <button
       disabled={disabled || isLoading}
       className={clsx(
-        'flex h-12 w-16 items-center justify-center rounded-full bg-arrow-badge transition-all',
+        'xs:h-9  xs:w-12 flex h-7 w-9 items-center justify-center rounded-full bg-arrow-badge transition-all sm:h-12 sm:w-16 sm:rounded-2xl',
         {
-          'cursor-not-allowed opacity-50': disabled || isLoading,
+          'opacity-50': disabled || isLoading,
           'cursor-pointer hover:bg-arrow-badge/80': !disabled && !isLoading,
         },
         className

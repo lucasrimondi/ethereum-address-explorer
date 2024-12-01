@@ -12,9 +12,10 @@ export function Input({ className, error, ...props }: InputProps) {
     <>
       <input
         className={clsx(
-          'bg-input w-full rounded-lg border-0 px-4 py-3 text-primary placeholder-primary/50',
+          'w-full rounded-lg border-0 bg-input text-primary placeholder-primary/50',
           'focus:outline-none focus:ring-1 focus:ring-secondary/30',
           'overflow-x-auto',
+          'xs:px-3 xs:py-2 px-2 py-1 sm:px-4 sm:py-3',
           {
             'ring-1 ring-red-500': error,
           },

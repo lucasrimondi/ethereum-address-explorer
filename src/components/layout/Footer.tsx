@@ -8,7 +8,7 @@ export function Footer() {
     <footer className="w-full px-4 py-6">
       <div className="mx-auto w-full rounded-2xl bg-footer">
         <div className="flex flex-col items-center justify-between gap-6 px-6 py-6 sm:flex-row sm:py-8">
-          <div className="flex flex-col items-center space-y-0.5 text-center sm:text-left">
+          <div className="flex flex-col space-y-0.5 text-center sm:text-left">
             <p className="text-xs font-medium text-secondary sm:text-base md:text-lg">
               reXplorer @ reown Frontend Challenge
             </p>
