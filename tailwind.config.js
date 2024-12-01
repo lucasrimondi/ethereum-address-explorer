@@ -9,6 +9,8 @@ module.exports = {
       backgroundColor: {
         background: '#9a9a9a',
         secondary: '#1f1f1f',
+        input: '#363636',
+        'arrow-badge': '#0b88f0',
       },
       textColor: {
         primary: '#FFFFFF',
