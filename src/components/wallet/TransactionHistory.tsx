@@ -1,7 +1,7 @@
 'use client'
 
 import { Loader2, ArrowLeftRight } from 'lucide-react'
-import { useTransactionHistory } from '@/lib/hooks/useTransactionHistory'
+import { useTransactionHistory } from '@/lib/api/query-hooks/useTransactionHistory'
 import { TransactionItem } from './TransactionItem'
 import { Pagination } from '../ui/Pagination'
 import clsx from 'clsx'
@@ -27,7 +27,7 @@ export function TransactionHistory({
 
   if (!address) {
     return (
-      <div className="relative min-h-[300px] w-full content-center rounded-3xl bg-arrow-badge/60 p-4 text-secondary xl:min-h-[400px]">
+      <div className="relative min-h-[300px] w-full content-center rounded-3xl bg-arrow-badge p-4 text-secondary xl:min-h-[400px]">
         <ArrowLeftRight className="absolute left-4 top-4 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
         <p className="absolute bottom-4 right-4 max-w-[80%] text-right text-xs sm:text-base md:text-lg lg:text-xl">
           Track your recent token transfers — see where your crypto has been

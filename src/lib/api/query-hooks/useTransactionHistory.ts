@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { useState, useCallback } from 'react'
-import { getTransactionHistory } from '../api/ethplorer'
+import { getTransactionHistory } from '../ethplorer'
 
 const ITEMS_PER_PAGE = 5
 

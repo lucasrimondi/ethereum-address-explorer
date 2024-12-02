@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getAddressInfo, AddressInfo } from '../api/ethplorer'
+import { getAddressInfo, AddressInfo } from '../ethplorer'
 
 export function useAddressInfo(address?: string) {
   const { data, error, isLoading } = useQuery({

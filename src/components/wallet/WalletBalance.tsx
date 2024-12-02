@@ -2,13 +2,14 @@
 
 import { useState } from 'react'
 import { Wallet, Loader2, ChevronDown, Eye, EyeOff } from 'lucide-react'
-import { useAddressInfo } from '@/lib/hooks/useAddressInfo'
+
 import { formatUSD } from '@/lib/utils/format'
-import { calculateTotalBalance } from '@/lib/utils/calculations'
 import { TokensList } from './TokensList'
 import { AddressDisplay } from './AddressDisplay'
 import { IconButton } from '../ui/IconButton'
+import { useTokenData } from '@/lib/hooks/useTokenData'
 import clsx from 'clsx'
+import { useAddressInfo } from '../../lib/api/query-hooks/useAddressInfo'
 
 interface WalletBalanceProps {
   address: string
@@ -18,10 +19,12 @@ interface WalletBalanceProps {
 export function WalletBalance({ address, className }: WalletBalanceProps) {
   const [isVisible, setIsVisible] = useState(true)
   const { data, error, isLoading } = useAddressInfo(address)
+  const tokens = useTokenData(data)
+  const totalBalance = tokens.reduce((sum, token) => sum + token.balanceUSD, 0)
 
   if (!address) {
     return (
-      <div className="relative min-h-[300px] w-full content-center rounded-3xl bg-wallet/60 p-4 text-secondary xl:min-h-[400px]">
+      <div className="relative min-h-[300px] w-full content-center rounded-3xl bg-wallet p-4 text-secondary xl:min-h-[400px]">
         <Wallet className="absolute left-4 top-4 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
         <p className="absolute bottom-4 right-4 max-w-[80%] text-right text-xs sm:text-base md:text-lg lg:text-xl">
           Get a breakdown of your wallet&apos;s balance — every token, every
@@ -38,12 +41,6 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
       </div>
     )
   }
-
-  const ethBalance = data?.ETH?.balance ?? 0
-  const ethPrice = data?.ETH?.price?.rate ?? 0
-  const tokens = data?.tokens ?? []
-
-  const { totalValueUSD } = calculateTotalBalance(ethBalance, ethPrice, tokens)
 
   return (
     <div
@@ -89,7 +86,7 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
                 </div>
               </div>
               <span className="font-mono text-xl font-bold md:text-2xl lg:text-3xl">
-                {isVisible ? formatUSD(totalValueUSD) : '••••••'}
+                {isVisible ? formatUSD(totalBalance) : '••••••'}
               </span>
             </div>
             <div className="flex items-center gap-1 text-secondary/50">
@@ -99,12 +96,7 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
               </span>
             </div>
           </div>
-          <TokensList
-            tokens={tokens}
-            ethBalance={ethBalance}
-            ethPrice={ethPrice}
-            hideBalances={!isVisible}
-          />
+          <TokensList tokens={tokens} hideBalances={!isVisible} />
         </div>
       )}
     </div>
