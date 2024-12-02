@@ -2,14 +2,13 @@
 
 import { useState } from 'react'
 import { Wallet, Loader2, ChevronDown, Eye, EyeOff } from 'lucide-react'
-
 import { formatUSD } from '@/lib/utils/format'
 import { TokensList } from './TokensList'
 import { AddressDisplay } from './AddressDisplay'
 import { IconButton } from '../ui/IconButton'
 import { useTokenData } from '@/lib/hooks/useTokenData'
 import clsx from 'clsx'
-import { useAddressInfo } from '../../lib/api/query-hooks/useAddressInfo'
+import { useAddressBalance } from '../../lib/api/query-hooks/useAddressBalance'
 
 interface WalletBalanceProps {
   address: string
@@ -18,7 +17,7 @@ interface WalletBalanceProps {
 
 export function WalletBalance({ address, className }: WalletBalanceProps) {
   const [isVisible, setIsVisible] = useState(true)
-  const { data, error, isLoading } = useAddressInfo(address)
+  const { data, error, isLoading } = useAddressBalance(address)
   const tokens = useTokenData(data)
   const totalBalance = tokens.reduce((sum, token) => sum + token.balanceUSD, 0)
 

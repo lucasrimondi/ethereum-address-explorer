@@ -5,7 +5,7 @@ import { ArrowRight, RotateCw } from 'lucide-react'
 import { isValidEthereumAddress } from '@/lib/validation'
 import { Input } from '@/components/ui/Input'
 import { IconButton } from '@/components/ui/IconButton'
-import { WalletInfo } from '../wallet/WalletInfo'
+import { WalletInfo } from '../wallet-info/WalletInfo'
 import { useQueryClient } from '@tanstack/react-query'
 
 export function AddressForm() {
@@ -42,7 +42,7 @@ export function AddressForm() {
   }
 
   return (
-    <div className="flex w-full flex-col items-center gap-8">
+    <>
       <form onSubmit={handleSubmit} className="w-full">
         <div className="flex items-start gap-2 rounded-3xl bg-secondary p-2 sm:gap-3 sm:p-3 md:gap-4 md:p-4 lg:p-8">
           <div className="relative flex-1">
@@ -75,6 +75,6 @@ export function AddressForm() {
         </div>
       </form>
       <WalletInfo address={submittedAddress} />
-    </div>
+    </>
   )
 }
