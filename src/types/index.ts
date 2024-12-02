@@ -1,1 +1,0 @@
-// Common TypeScript types and interfaces

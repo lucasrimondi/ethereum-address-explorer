@@ -23,7 +23,7 @@ export function Pagination({
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1 || isLoading}
         aria-label="Previous page"
-        className="bg-primary hover:bg-secondary/10"
+        className="bg-transparent hover:bg-secondary/10"
       />
       <span className="min-w-[3rem] text-center text-base">
         Page {currentPage}
@@ -33,7 +33,7 @@ export function Pagination({
         onClick={() => onPageChange(currentPage + 1)}
         disabled={!hasMore || isLoading}
         aria-label="Next page"
-        className="bg-primary hover:bg-secondary/10"
+        className="bg-transparent hover:bg-secondary/10"
       />
     </div>
   )

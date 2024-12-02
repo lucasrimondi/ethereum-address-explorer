@@ -17,9 +17,21 @@ interface WalletBalanceProps {
 
 export function WalletBalance({ address, className }: WalletBalanceProps) {
   const [isVisible, setIsVisible] = useState(true)
-  const { data, error, isLoading } = useAddressBalance(address)
-  const tokens = useTokenData(data)
-  const totalBalance = tokens.reduce((sum, token) => sum + token.balanceUSD, 0)
+  const {
+    data,
+    tokens,
+    error,
+    isLoading,
+    currentPage,
+    hasMore,
+    handlePageChange,
+    showPagination,
+  } = useAddressBalance(address)
+  const allTokens = useTokenData(data)
+  const totalBalance = allTokens.reduce(
+    (sum, token) => sum + token.balanceUSD,
+    0
+  )
 
   if (!address) {
     return (
@@ -64,7 +76,7 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
                 <Wallet className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8" />
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2">
-                    <h2 className="text-sm font-bold sm:text-lg md:text-xl lg:text-2xl">
+                    <h2 className="text-sm font-bold sm:text-lg md:text-xl lg:text-3xl">
                       Total Balance
                     </h2>
                     <IconButton
@@ -84,7 +96,7 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
                   {address && <AddressDisplay address={address} />}
                 </div>
               </div>
-              <span className="font-mono text-xl font-bold md:text-2xl lg:text-3xl">
+              <span className="font-mono text-xl font-bold md:text-2xl lg:text-4xl">
                 {isVisible ? formatUSD(totalBalance) : '••••••'}
               </span>
             </div>
@@ -95,7 +107,14 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
               </span>
             </div>
           </div>
-          <TokensList tokens={tokens} hideBalances={!isVisible} />
+          <TokensList
+            tokens={tokens}
+            hideBalances={!isVisible}
+            currentPage={currentPage}
+            hasMore={hasMore}
+            onPageChange={handlePageChange}
+            showPagination={showPagination}
+          />
         </div>
       )}
     </div>
