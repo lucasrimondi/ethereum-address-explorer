@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useCallback, useState } from 'react'
+import { useState } from 'react'
 import { Wallet, Loader2, ChevronDown, Eye, EyeOff } from 'lucide-react'
 import { useAddressInfo } from '@/lib/hooks/useAddressInfo'
 import { formatUSD } from '@/lib/utils/format'
@@ -17,25 +17,15 @@ interface WalletBalanceProps {
 
 export function WalletBalance({ address, className }: WalletBalanceProps) {
   const [isVisible, setIsVisible] = useState(true)
-  const { data, error, isLoading, fetchAddressInfo } = useAddressInfo()
-
-  const fetchData = useCallback(async () => {
-    if (address) {
-      await fetchAddressInfo(address)
-    }
-  }, [address, fetchAddressInfo])
-
-  useEffect(() => {
-    fetchData()
-  }, [fetchData])
+  const { data, error, isLoading } = useAddressInfo(address)
 
   if (!address) {
     return (
-      <div className="relative min-h-[300px] w-full content-center rounded-3xl bg-wallet/40 p-4 text-secondary xl:min-h-[400px]">
+      <div className="relative min-h-[300px] w-full content-center rounded-3xl bg-wallet/60 p-4 text-secondary xl:min-h-[400px]">
         <Wallet className="absolute left-4 top-4 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
-        <p className="absolute bottom-4 right-4 max-w-[80%] text-right text-sm sm:text-base md:text-lg lg:text-xl">
-          Get a breakdown of your wallet’s balance — every token, every detail,
-          all in one place!
+        <p className="absolute bottom-4 right-4 max-w-[80%] text-right text-xs sm:text-base md:text-lg lg:text-xl">
+          Get a breakdown of your wallet&apos;s balance — every token, every
+          detail, all in one place!
         </p>
       </div>
     )
@@ -90,7 +80,7 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
                           <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                         )
                       }
-                      onClick={setIsVisible.bind(null, (prev) => !prev)}
+                      onClick={() => setIsVisible((prev) => !prev)}
                       className="h-5 w-5 bg-transparent hover:bg-secondary/5 sm:h-6 sm:w-6"
                       aria-label={isVisible ? 'Hide balance' : 'Show balance'}
                     />

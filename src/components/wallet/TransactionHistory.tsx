@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
 import { Loader2, ArrowLeftRight } from 'lucide-react'
 import { useTransactionHistory } from '@/lib/hooks/useTransactionHistory'
 import { TransactionItem } from './TransactionItem'
@@ -20,24 +19,17 @@ export function TransactionHistory({
     data,
     error,
     isLoading,
-    fetchTransactionHistory,
     currentPage,
     hasMore,
     handlePageChange,
     totalTransactions,
-  } = useTransactionHistory()
-
-  useEffect(() => {
-    if (address) {
-      fetchTransactionHistory(address)
-    }
-  }, [address, fetchTransactionHistory])
+  } = useTransactionHistory(address)
 
   if (!address) {
     return (
-      <div className="relative min-h-[300px] w-full content-center rounded-3xl bg-arrow-badge/40 p-4 text-secondary xl:min-h-[400px]">
+      <div className="relative min-h-[300px] w-full content-center rounded-3xl bg-arrow-badge/60 p-4 text-secondary xl:min-h-[400px]">
         <ArrowLeftRight className="absolute left-4 top-4 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
-        <p className="absolute bottom-4 right-4 max-w-[80%] text-right text-sm sm:text-base md:text-lg lg:text-xl">
+        <p className="absolute bottom-4 right-4 max-w-[80%] text-right text-xs sm:text-base md:text-lg lg:text-xl">
           Track your recent token transfers — see where your crypto has been
           moving!
         </p>

@@ -50,7 +50,6 @@ export function TokensList({
         const balance =
           token.balance / Math.pow(10, parseInt(token.tokenInfo.decimals) || 18)
         const value = balance * (token.tokenInfo.price?.rate ?? 0)
-        console.log(token.tokenInfo)
         return (
           <div
             key={index}

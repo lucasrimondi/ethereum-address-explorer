@@ -1,83 +1,50 @@
+import { useQuery } from '@tanstack/react-query'
 import { useState, useCallback } from 'react'
-import { Transaction, getTransactionHistory } from '../api/ethplorer'
+import { getTransactionHistory } from '../api/ethplorer'
 
 const ITEMS_PER_PAGE = 5
 
-export function useTransactionHistory() {
-  const [allTransactions, setAllTransactions] = useState<Transaction[]>([])
-  const [data, setData] = useState<Transaction[]>([])
-  const [error, setError] = useState<string>('')
-  const [isLoading, setIsLoading] = useState(false)
+export function useTransactionHistory(address?: string) {
   const [currentPage, setCurrentPage] = useState(1)
-  const [hasMore, setHasMore] = useState(false)
 
-  const updateCurrentPageData = useCallback(
-    (page: number, transactions: Transaction[]) => {
-      const startIndex = (page - 1) * ITEMS_PER_PAGE
-      const endIndex = startIndex + ITEMS_PER_PAGE
-      const paginatedData = transactions.slice(startIndex, endIndex)
+  const {
+    data: response,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ['transactionHistory', address],
+    queryFn: () => getTransactionHistory(address!),
+    enabled: !!address,
+  })
 
-      setData(paginatedData)
-      setCurrentPage(page)
-      setHasMore(endIndex < transactions.length)
-    },
-    []
-  )
+  const transactions =
+    response?.operations.map((tx, index) => ({
+      ...tx,
+      uniqueId: `${tx.hash}-${tx.timestamp}-${index}`,
+    })) || []
 
-  const fetchTransactionHistory = useCallback(
-    async (address: string) => {
-      try {
-        setIsLoading(true)
-        setError('')
-        const response = await getTransactionHistory(address)
-
-        // Ensure each transaction has a unique identifier
-        interface TransactionResponse {
-          operations: Transaction[]
-        }
-
-        const transactions: Transaction[] = (
-          response as TransactionResponse
-        ).operations.map((tx: Transaction, index: number) => ({
-          ...tx,
-          uniqueId: `${tx.hash}-${tx.timestamp}-${index}`,
-        }))
-
-        setAllTransactions(transactions)
-        updateCurrentPageData(1, transactions)
-      } catch (err) {
-        setError('Failed to fetch transaction history')
-        setAllTransactions([])
-        setData([])
-        setHasMore(false)
-      } finally {
-        setIsLoading(false)
-      }
-    },
-    [updateCurrentPageData]
-  )
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+  const endIndex = startIndex + ITEMS_PER_PAGE
+  const paginatedData = transactions.slice(startIndex, endIndex)
+  const hasMore = endIndex < transactions.length
 
   const handlePageChange = useCallback(
     (page: number) => {
-      if (
-        page < 1 ||
-        page > Math.ceil(allTransactions.length / ITEMS_PER_PAGE)
-      ) {
+      if (page < 1 || page > Math.ceil(transactions.length / ITEMS_PER_PAGE)) {
         return
       }
-      updateCurrentPageData(page, allTransactions)
+      setCurrentPage(page)
     },
-    [allTransactions, updateCurrentPageData]
+    [transactions.length]
   )
 
   return {
-    data,
-    error,
+    data: paginatedData,
+    error: error ? 'Failed to fetch transaction history' : '',
     isLoading,
-    fetchTransactionHistory,
     currentPage,
     hasMore,
     handlePageChange,
-    totalTransactions: allTransactions.length,
+    totalTransactions: transactions.length,
   }
 }

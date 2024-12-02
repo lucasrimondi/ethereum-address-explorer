@@ -1,24 +1,16 @@
-import { useState, useCallback } from 'react'
-import { AddressInfo, getAddressInfo } from '../api/ethplorer'
+import { useQuery } from '@tanstack/react-query'
+import { getAddressInfo, AddressInfo } from '../api/ethplorer'
 
-export function useAddressInfo() {
-  const [data, setData] = useState<AddressInfo | null>(null)
-  const [error, setError] = useState<string>('')
-  const [isLoading, setIsLoading] = useState(false)
+export function useAddressInfo(address?: string) {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['addressInfo', address],
+    queryFn: () => getAddressInfo(address!),
+    enabled: !!address,
+  })
 
-  const fetchAddressInfo = useCallback(async (address: string) => {
-    try {
-      setIsLoading(true)
-      setError('')
-      const info = await getAddressInfo(address)
-      setData(info)
-    } catch (err) {
-      setError('Failed to fetch address information')
-      setData(null)
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
-
-  return { data, error, isLoading, fetchAddressInfo }
+  return {
+    data: data as AddressInfo | null,
+    error: error ? 'Failed to fetch address information' : '',
+    isLoading,
+  }
 }
