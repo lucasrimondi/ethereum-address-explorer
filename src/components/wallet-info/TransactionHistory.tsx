@@ -5,6 +5,8 @@ import { useTransactionHistory } from '@/lib/api/query-hooks/useTransactionHisto
 import { TransactionItem } from './TransactionItem'
 import { Pagination } from '../ui/Pagination'
 import clsx from 'clsx'
+import { CardInitialState } from '../ui/CardInitialState'
+import { CardErrorState } from '../ui/CardErrorState'
 
 interface TransactionHistoryProps {
   address: string
@@ -27,22 +29,18 @@ export function TransactionHistory({
 
   if (!address) {
     return (
-      <div className="bg-green relative min-h-[300px] w-full content-center rounded-3xl p-4 text-secondary xl:min-h-[400px]">
-        <ArrowLeftRight className="absolute left-4 top-4 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
-        <p className="absolute bottom-4 right-4 max-w-[80%] text-right text-xs sm:text-base md:text-lg lg:text-xl">
-          Track your recent token transfers — see where your crypto has been
-          moving!
-        </p>
-      </div>
+      <CardInitialState
+        message="Track your recent token transfers — see where your crypto has been moving!"
+        icon={
+          <ArrowLeftRight className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
+        }
+        className="bg-green"
+      />
     )
   }
 
   if (error) {
-    return (
-      <div className="min-h-[300px] w-full rounded-3xl bg-red-500/10 p-4 text-red-500 xl:min-h-[400px]">
-        {error}
-      </div>
-    )
+    return <CardErrorState error={error} />
   }
 
   return (

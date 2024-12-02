@@ -1,7 +1,7 @@
 'use client'
 
 import { Copy, Check } from 'lucide-react'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { IconButton } from '../ui/IconButton'
 import { formatAddress } from '@/lib/utils/format'
 import clsx from 'clsx'
@@ -14,7 +14,7 @@ interface AddressDisplayProps {
 export function AddressDisplay({ address, className }: AddressDisplayProps) {
   const [copied, setCopied] = useState(false)
 
-  const handleCopy = async () => {
+  const handleCopy = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(address)
       setCopied(true)
@@ -22,7 +22,7 @@ export function AddressDisplay({ address, className }: AddressDisplayProps) {
     } catch (err) {
       console.error('Failed to copy address:', err)
     }
-  }
+  }, [address])
 
   return (
     <div className={clsx('flex items-center gap-1 sm:gap-2', className)}>

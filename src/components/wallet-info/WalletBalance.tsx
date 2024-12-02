@@ -1,14 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Wallet, Loader2, ChevronDown, Eye, EyeOff } from 'lucide-react'
 import { formatUSD } from '@/lib/utils/format'
 import { TokensList } from './TokensList'
 import { AddressDisplay } from './AddressDisplay'
 import { IconButton } from '../ui/IconButton'
-import { useTokenData } from '@/lib/hooks/useTokenData'
 import clsx from 'clsx'
 import { useAddressBalance } from '../../lib/api/query-hooks/useAddressBalance'
+import { CardInitialState } from '../ui/CardInitialState'
+import { CardErrorState } from '../ui/CardErrorState'
 
 interface WalletBalanceProps {
   address: string
@@ -18,7 +19,6 @@ interface WalletBalanceProps {
 export function WalletBalance({ address, className }: WalletBalanceProps) {
   const [isVisible, setIsVisible] = useState(true)
   const {
-    data,
     tokens,
     error,
     isLoading,
@@ -27,30 +27,24 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
     handlePageChange,
     showPagination,
   } = useAddressBalance(address)
-  const allTokens = useTokenData(data)
-  const totalBalance = allTokens.reduce(
-    (sum, token) => sum + token.balanceUSD,
-    0
+
+  const totalBalance = useMemo(
+    () => tokens.reduce((sum, token) => sum + token.balanceUSD, 0),
+    [tokens]
   )
 
   if (!address) {
     return (
-      <div className="bg-yellow relative min-h-[300px] w-full content-center rounded-3xl p-4 text-secondary xl:min-h-[400px]">
-        <Wallet className="absolute left-4 top-4 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
-        <p className="absolute bottom-4 right-4 max-w-[80%] text-right text-xs sm:text-base md:text-lg lg:text-xl">
-          Get a breakdown of your wallet&apos;s balance — every token, every
-          detail, all in one place!
-        </p>
-      </div>
+      <CardInitialState
+        message="Get a breakdown of your wallet's balance — every token, every detail, all in one place!"
+        icon={<Wallet className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />}
+        className="bg-yellow"
+      />
     )
   }
 
   if (error) {
-    return (
-      <div className="min-h-[300px] w-full rounded-2xl bg-red-500/10 p-4 text-red-500 xl:min-h-[400px]">
-        {error}
-      </div>
-    )
+    return <CardErrorState error={error} />
   }
 
   return (

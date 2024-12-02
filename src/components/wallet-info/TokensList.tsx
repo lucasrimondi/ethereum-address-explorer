@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { formatUSD } from '@/lib/utils/format'
 import { TokenData } from '@/lib/hooks/useTokenData'
 import { Pagination } from '../ui/Pagination'
@@ -11,7 +12,7 @@ interface TokensListProps {
   showPagination: boolean
 }
 
-export function TokensList({
+function TokensListComponent({
   tokens,
   hideBalances = false,
   currentPage,
@@ -51,3 +52,5 @@ export function TokensList({
     </div>
   )
 }
+
+export const TokensList = memo(TokensListComponent)
