@@ -27,7 +27,7 @@ export function TransactionHistory({
 
   if (!address) {
     return (
-      <div className="relative min-h-[300px] w-full content-center rounded-3xl bg-arrow-badge p-4 text-secondary xl:min-h-[400px]">
+      <div className="bg-green relative min-h-[300px] w-full content-center rounded-3xl p-4 text-secondary xl:min-h-[400px]">
         <ArrowLeftRight className="absolute left-4 top-4 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
         <p className="absolute bottom-4 right-4 max-w-[80%] text-right text-xs sm:text-base md:text-lg lg:text-xl">
           Track your recent token transfers — see where your crypto has been
@@ -48,7 +48,7 @@ export function TransactionHistory({
   return (
     <div
       className={clsx(
-        'w-full overflow-hidden rounded-2xl bg-arrow-badge p-4 text-secondary transition-all duration-300 sm:p-6 md:p-8',
+        'bg-green w-full overflow-hidden rounded-2xl p-4 text-secondary transition-all duration-300 sm:p-6 md:p-8',
         'min-h-[300px] xl:min-h-[400px]',
         {
           'animate-pulse': isLoading,

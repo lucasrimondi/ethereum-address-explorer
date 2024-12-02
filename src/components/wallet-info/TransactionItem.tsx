@@ -30,7 +30,7 @@ export function TransactionItem({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           {isIncoming ? (
-            <ArrowDownRight className="h-4 w-4 text-header lg:h-5 lg:w-5" />
+            <ArrowDownRight className="text-green h-4 w-4 lg:h-5 lg:w-5" />
           ) : (
             <ArrowUpRight className="h-4 w-4 text-footer lg:h-5 lg:w-5" />
           )}
