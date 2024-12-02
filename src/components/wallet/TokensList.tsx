@@ -56,15 +56,15 @@ export function TokensList({
             className="flex items-baseline justify-between py-2 first:pt-0 last:pb-0"
           >
             <div className="flex flex-col gap-0.5">
-              <span className="text-xs font-medium sm:text-sm md:text-base">
+              <span className="text-xs font-medium sm:text-sm md:text-base lg:text-lg">
                 {token.tokenInfo.symbol}
               </span>
-              <span className="text-[10px] text-secondary/50 sm:text-xs">
-                {hideBalances ? '*****' : balance.toFixed(4)}
+              <span className="text-[10px] text-secondary/50 sm:text-xs lg:text-base">
+                {hideBalances ? '••••••' : balance.toFixed(4)}
               </span>
             </div>
-            <span className="font-mono text-xs sm:text-sm md:text-base">
-              {hideBalances ? '$*****' : formatUSD(value)}
+            <span className="font-mono text-xs sm:text-sm md:text-base lg:text-lg">
+              {hideBalances ? '••••••' : formatUSD(value)}
             </span>
           </div>
         )

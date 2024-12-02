@@ -5,7 +5,7 @@ import { Badge } from '../ui/Badge'
 
 export function Header() {
   return (
-    <header className="w-full px-2 py-2 sm:px-4 sm:py-6">
+    <header className="w-full">
       <div className="bg-header mx-auto w-full rounded-2xl">
         <div className="flex flex-col items-start gap-4 px-4 py-4 sm:px-6 sm:py-8">
           <div className="flex gap-1 text-center">

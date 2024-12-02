@@ -12,10 +12,9 @@ export function Input({ className, error, ...props }: InputProps) {
     <>
       <input
         className={clsx(
-          'w-full rounded-lg border-0 bg-input text-primary placeholder-primary/50',
+          'w-full rounded-xl border-0 bg-input px-3 py-2.5 text-primary placeholder-primary/50 sm:px-4 sm:py-3 md:px-5 md:py-4',
           'focus:outline-none focus:ring-1 focus:ring-secondary/30',
           'overflow-x-auto',
-          'xs:px-3 xs:py-2 px-2 py-1 sm:px-4 sm:py-3',
           {
             'ring-1 ring-red-500': error,
           },
@@ -24,7 +23,7 @@ export function Input({ className, error, ...props }: InputProps) {
         {...props}
       />
       {error && (
-        <p className="mt-2 text-sm text-red-500" role="alert">
+        <p className="mt-2 text-sm text-red-500 lg:text-base" role="alert">
           {error}
         </p>
       )}

@@ -22,9 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${spaceMono.className} flex min-h-screen flex-col p-4`}>
+      <body
+        className={`${spaceMono.className} flex min-h-screen flex-col sm:p-6 `}
+      >
         <BalanceVisibilityProvider>
-          <main className="flex flex-1 flex-col px-4 py-6">
+          <main className="xs:px-4 xs:py-6 flex flex-1 flex-col px-2 py-2">
             <div className="flex-1 rounded-2xl bg-primary">{children}</div>
           </main>
           <Footer />

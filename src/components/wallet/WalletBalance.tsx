@@ -32,7 +32,7 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
 
   if (error) {
     return (
-      <div className="w-full rounded-2xl bg-red-500/10 p-4 text-red-500">
+      <div className="w-full rounded-2xl bg-red-500/10 p-4 text-red-500 lg:text-lg">
         {error}
       </div>
     )
@@ -60,13 +60,13 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
         </div>
       ) : (
         <div className="flex flex-col gap-4 sm:gap-6">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-2">
                 <Wallet className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8" />
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2">
-                    <h2 className="text-sm font-semibold sm:text-lg md:text-xl">
+                    <h2 className="text-sm font-bold sm:text-lg md:text-xl lg:text-2xl">
                       Total Balance
                     </h2>
                     <IconButton
@@ -86,13 +86,15 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
                   <AddressDisplay address={address} />
                 </div>
               </div>
-              <span className="font-mono text-base font-bold sm:text-xl md:text-2xl">
-                {isVisible ? formatUSD(totalValueUSD) : '$*****'}
+              <span className="font-mono text-xl font-bold md:text-2xl lg:text-3xl">
+                {isVisible ? formatUSD(totalValueUSD) : '••••••'}
               </span>
             </div>
             <div className="flex items-center gap-1 text-secondary/50">
               <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
-              <span className="text-[10px] sm:text-sm">Asset Details</span>
+              <span className="text-[10px] sm:text-sm lg:text-base">
+                Asset Details
+              </span>
             </div>
           </div>
           <TokensList

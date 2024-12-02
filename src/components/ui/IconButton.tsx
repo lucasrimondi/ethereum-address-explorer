@@ -20,7 +20,7 @@ export function IconButton({
     <button
       disabled={disabled || isLoading}
       className={clsx(
-        'xs:h-9  xs:w-12 flex h-7 w-9 items-center justify-center rounded-full bg-arrow-badge transition-all sm:h-12 sm:w-16 sm:rounded-2xl',
+        'flex items-center justify-center rounded-xl bg-arrow-badge transition-all',
         {
           'opacity-50': disabled || isLoading,
           'cursor-pointer hover:bg-arrow-badge/80': !disabled && !isLoading,
@@ -30,9 +30,9 @@ export function IconButton({
       {...props}
     >
       {isLoading ? (
-        <Loader2 className="h-6 w-6 animate-spin text-secondary" />
+        <Loader2 className="h-5 w-5 animate-spin text-secondary sm:h-6 sm:w-6 md:h-7 md:w-7" />
       ) : (
-        <div className="flex h-6 w-6 items-center justify-center text-secondary">
+        <div className="flex items-center justify-center text-secondary">
           {icon}
         </div>
       )}
