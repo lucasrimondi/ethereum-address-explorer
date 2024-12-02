@@ -7,7 +7,7 @@ export interface TokenData {
   decimals: number
 }
 
-export function useTokenData(data: AddressInfo | null) {
+export function useTokenData(data: AddressInfo | undefined): TokenData[] {
   if (!data) return []
 
   const { ETH, tokens = [] } = data

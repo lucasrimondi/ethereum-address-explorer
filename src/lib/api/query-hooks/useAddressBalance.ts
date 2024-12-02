@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getAddressInfo, AddressInfo } from '../ethplorer'
+import { getAddressInfo } from '../ethplorer'
 
 export function useAddressBalance(address?: string) {
   const { data, error, isLoading } = useQuery({
@@ -9,7 +9,7 @@ export function useAddressBalance(address?: string) {
   })
 
   return {
-    data: data as AddressInfo | null,
+    data,
     error: error ? 'Failed to fetch address information' : '',
     isLoading,
   }

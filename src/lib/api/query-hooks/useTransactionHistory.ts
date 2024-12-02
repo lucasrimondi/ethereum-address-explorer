@@ -17,12 +17,7 @@ export function useTransactionHistory(address?: string) {
     enabled: !!address,
   })
 
-  const transactions =
-    response?.operations.map((tx, index) => ({
-      ...tx,
-      uniqueId: `${tx.hash}-${tx.timestamp}-${index}`,
-    })) || []
-
+  const transactions = response?.operations || []
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
   const endIndex = startIndex + ITEMS_PER_PAGE
   const paginatedData = transactions.slice(startIndex, endIndex)
