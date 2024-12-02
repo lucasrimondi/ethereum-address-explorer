@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { Copy, Check } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { IconButton } from '../ui/IconButton'
@@ -11,7 +12,7 @@ interface AddressDisplayProps {
   className?: string
 }
 
-export function AddressDisplay({ address, className }: AddressDisplayProps) {
+function AddressDisplayComponent({ address, className }: AddressDisplayProps) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = useCallback(async () => {
@@ -45,3 +46,5 @@ export function AddressDisplay({ address, className }: AddressDisplayProps) {
     </div>
   )
 }
+
+export const AddressDisplay = memo(AddressDisplayComponent)

@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { formatAddress } from '@/lib/utils/format'
 import { formatDistanceToNow } from 'date-fns'
 import { ethers } from 'ethers'
@@ -11,7 +12,7 @@ interface TransactionItemProps {
   userAddress: string
 }
 
-export function TransactionItem({
+function TransactionItemComponent({
   transaction,
   userAddress,
 }: TransactionItemProps) {
@@ -53,3 +54,5 @@ export function TransactionItem({
     </div>
   )
 }
+
+export const TransactionItem = memo(TransactionItemComponent)
