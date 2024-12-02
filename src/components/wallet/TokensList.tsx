@@ -8,6 +8,7 @@ interface Token {
     price?: {
       rate: number
     }
+    image?: string
   }
   balance: number
 }
@@ -49,21 +50,21 @@ export function TokensList({
         const balance =
           token.balance / Math.pow(10, parseInt(token.tokenInfo.decimals) || 18)
         const value = balance * (token.tokenInfo.price?.rate ?? 0)
-
+        console.log(token.tokenInfo)
         return (
           <div
             key={index}
             className="flex items-baseline justify-between py-2 first:pt-0 last:pb-0"
           >
             <div className="flex flex-col gap-0.5">
-              <span className="text-xs font-medium sm:text-sm md:text-base lg:text-lg">
+              <span className="text-xs font-medium sm:text-sm md:text-base lg:text-xl">
                 {token.tokenInfo.symbol}
               </span>
-              <span className="text-[10px] text-secondary/50 sm:text-xs lg:text-base">
+              <span className="text-[10px] text-secondary/50 sm:text-xs lg:text-lg">
                 {hideBalances ? '••••••' : balance.toFixed(4)}
               </span>
             </div>
-            <span className="font-mono text-xs sm:text-sm md:text-base lg:text-lg">
+            <span className="font-mono text-xs sm:text-sm md:text-base lg:text-xl">
               {hideBalances ? '••••••' : formatUSD(value)}
             </span>
           </div>

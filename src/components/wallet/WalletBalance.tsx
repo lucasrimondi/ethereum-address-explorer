@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useState } from 'react'
 import { Wallet, Loader2, ChevronDown, Eye, EyeOff } from 'lucide-react'
 import { useAddressInfo } from '@/lib/hooks/useAddressInfo'
 import { formatUSD } from '@/lib/utils/format'
 import { calculateTotalBalance } from '@/lib/utils/calculations'
 import { TokensList } from './TokensList'
 import { AddressDisplay } from './AddressDisplay'
-import { useBalanceVisibility } from '@/lib/context/BalanceVisibilityContext'
 import { IconButton } from '../ui/IconButton'
 import clsx from 'clsx'
 
@@ -17,8 +16,8 @@ interface WalletBalanceProps {
 }
 
 export function WalletBalance({ address, className }: WalletBalanceProps) {
+  const [isVisible, setIsVisible] = useState(true)
   const { data, error, isLoading, fetchAddressInfo } = useAddressInfo()
-  const { isVisible, toggleVisibility } = useBalanceVisibility()
 
   const fetchData = useCallback(async () => {
     if (address) {
@@ -30,9 +29,21 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
     fetchData()
   }, [fetchData])
 
+  if (!address) {
+    return (
+      <div className="relative min-h-[300px] w-full content-center rounded-3xl bg-wallet/40 p-4 text-secondary xl:min-h-[400px]">
+        <Wallet className="absolute left-4 top-4 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
+        <p className="absolute bottom-4 right-4 max-w-[80%] text-right text-sm sm:text-base md:text-lg lg:text-xl">
+          Get a breakdown of your wallet’s balance — every token, every detail,
+          all in one place!
+        </p>
+      </div>
+    )
+  }
+
   if (error) {
     return (
-      <div className="w-full rounded-2xl bg-red-500/10 p-4 text-red-500 lg:text-lg">
+      <div className="min-h-[300px] w-full rounded-2xl bg-red-500/10 p-4 text-red-500 xl:min-h-[400px]">
         {error}
       </div>
     )
@@ -47,7 +58,8 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
   return (
     <div
       className={clsx(
-        'bg-wallet w-full overflow-hidden rounded-2xl p-4 text-secondary transition-all duration-300 sm:p-6 md:p-8',
+        'w-full overflow-hidden rounded-2xl bg-wallet p-4 text-secondary transition-all duration-300 sm:p-6 md:p-8',
+        'min-h-[300px] xl:min-h-[400px]',
         {
           'animate-pulse': isLoading,
         },
@@ -59,7 +71,7 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
           <Loader2 className="h-8 w-8 animate-spin" />
         </div>
       ) : (
-        <div className="flex flex-col gap-4 sm:gap-6">
+        <div className="flex h-full flex-col gap-4 sm:gap-6">
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-2">
@@ -78,12 +90,12 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
                           <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                         )
                       }
-                      onClick={toggleVisibility}
+                      onClick={setIsVisible.bind(null, (prev) => !prev)}
                       className="h-5 w-5 bg-transparent hover:bg-secondary/5 sm:h-6 sm:w-6"
                       aria-label={isVisible ? 'Hide balance' : 'Show balance'}
                     />
                   </div>
-                  <AddressDisplay address={address} />
+                  {address && <AddressDisplay address={address} />}
                 </div>
               </div>
               <span className="font-mono text-xl font-bold md:text-2xl lg:text-3xl">

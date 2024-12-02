@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Space_Mono } from 'next/font/google'
 import { Footer } from '@/components/layout/Footer'
-import { BalanceVisibilityProvider } from '@/lib/context/BalanceVisibilityContext'
 import './globals.css'
 
 const spaceMono = Space_Mono({
@@ -23,14 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${spaceMono.className} flex min-h-screen flex-col sm:p-6 `}
+        className={`${spaceMono.className} flex min-h-screen flex-col gap-4 sm:p-6`}
       >
-        <BalanceVisibilityProvider>
-          <main className="xs:px-4 xs:py-6 flex flex-1 flex-col px-2 py-2">
-            <div className="flex-1 rounded-2xl bg-primary">{children}</div>
-          </main>
-          <Footer />
-        </BalanceVisibilityProvider>
+        <main className="xs:px-4 xs:py-6 flex flex-1 flex-col px-2 py-2">
+          <div className="rounded-3xl bg-primary">{children}</div>
+        </main>
+        <Footer />
       </body>
     </html>
   )

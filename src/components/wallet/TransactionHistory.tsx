@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { Loader2 } from 'lucide-react'
+import { Loader2, ArrowLeftRight } from 'lucide-react'
 import { useTransactionHistory } from '@/lib/hooks/useTransactionHistory'
 import { TransactionItem } from './TransactionItem'
 import { Pagination } from '../ui/Pagination'
@@ -33,9 +33,21 @@ export function TransactionHistory({
     }
   }, [address, fetchTransactionHistory])
 
+  if (!address) {
+    return (
+      <div className="relative min-h-[300px] w-full content-center rounded-3xl bg-arrow-badge/40 p-4 text-secondary xl:min-h-[400px]">
+        <ArrowLeftRight className="absolute left-4 top-4 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
+        <p className="absolute bottom-4 right-4 max-w-[80%] text-right text-sm sm:text-base md:text-lg lg:text-xl">
+          Track your recent token transfers — see where your crypto has been
+          moving!
+        </p>
+      </div>
+    )
+  }
+
   if (error) {
     return (
-      <div className="w-full rounded-2xl bg-red-500/10 p-4 text-red-500 lg:text-lg">
+      <div className="min-h-[300px] w-full rounded-3xl bg-red-500/10 p-4 text-red-500 xl:min-h-[400px]">
         {error}
       </div>
     )
@@ -45,6 +57,7 @@ export function TransactionHistory({
     <div
       className={clsx(
         'w-full overflow-hidden rounded-2xl bg-arrow-badge p-4 text-secondary transition-all duration-300 sm:p-6 md:p-8',
+        'min-h-[300px] xl:min-h-[400px]',
         {
           'animate-pulse': isLoading,
         },
@@ -62,7 +75,7 @@ export function TransactionHistory({
       >
         <div className="mb-4 flex items-baseline justify-between">
           <h2 className="text-lg font-semibold sm:text-xl lg:text-2xl">
-            Recent Transfers
+            Recent Token Transfers
           </h2>
           {totalTransactions > 0 && (
             <span className="text-xs text-secondary/70 lg:text-sm">
@@ -85,7 +98,7 @@ export function TransactionHistory({
                 />
               ))}
               {data.length === 0 && (
-                <p className="text-center text-secondary/50 lg:text-lg">
+                <p className="mt-8 text-center text-secondary/50 lg:text-lg">
                   No transfers found
                 </p>
               )}

@@ -39,7 +39,7 @@ export function AddressForm() {
   return (
     <div className="flex w-full flex-col items-center gap-8">
       <form onSubmit={handleSubmit} className="w-full">
-        <div className="flex items-center gap-2 rounded-2xl bg-secondary p-2 sm:gap-3 sm:p-3 md:gap-4 md:p-4">
+        <div className="flex items-start gap-2 rounded-3xl bg-secondary p-2 sm:gap-3 sm:p-3 md:gap-4 md:p-4 lg:p-8">
           <div className="relative flex-1">
             <Input
               type="text"
@@ -56,7 +56,7 @@ export function AddressForm() {
           <IconButton
             type="submit"
             icon={
-              <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" />
+              <ArrowRight className="h-5 w-5  sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-9 lg:w-9" />
             }
             disabled={!isValid}
             isLoading={isLoading}
@@ -65,7 +65,7 @@ export function AddressForm() {
           />
         </div>
       </form>
-      {submittedAddress && <WalletInfo address={submittedAddress} />}
+      <WalletInfo address={submittedAddress} />
     </div>
   )
 }
