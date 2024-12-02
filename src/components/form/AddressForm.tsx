@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from 'react'
 import { ArrowRight, RotateCw } from 'lucide-react'
-import { isValidEthereumAddress } from '@/lib/validation'
+import { isValidEthereumAddress } from '@/lib/utils/validation'
 import { Input } from '@/components/ui/Input'
 import { IconButton } from '@/components/ui/IconButton'
 import { WalletInfo } from '../wallet-info/WalletInfo'

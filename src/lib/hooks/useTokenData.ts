@@ -1,4 +1,4 @@
-import { AddressInfo } from '../api/ethplorer'
+import { AddressInfoResponse } from '../api/dto/response.dto'
 
 export interface TokenData {
   symbol: string
@@ -7,7 +7,9 @@ export interface TokenData {
   decimals: number
 }
 
-export function useTokenData(data: AddressInfo | undefined): TokenData[] {
+export function useTokenData(
+  data: AddressInfoResponse | undefined
+): TokenData[] {
   if (!data) return []
 
   const { ETH, tokens = [] } = data

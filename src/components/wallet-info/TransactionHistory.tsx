@@ -82,9 +82,9 @@ export function TransactionHistory({
         ) : (
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              {data.map((transaction) => (
+              {data.map((transaction, index) => (
                 <TransactionItem
-                  key={transaction.hash}
+                  key={index}
                   transaction={transaction}
                   userAddress={address}
                 />

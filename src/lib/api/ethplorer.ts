@@ -1,64 +1,9 @@
 import { ETHPLORER_API_KEY, ETHPLORER_API_URL } from '../config'
+import { AddressInfoResponse, TransactionResponse } from './dto/response.dto'
 
-export interface AddressInfo {
+export async function getAddressInfo(
   address: string
-  ETH: {
-    balance: number
-    price: {
-      rate: number
-      diff: number
-      diff7d: number
-      ts: number
-      marketCapUsd: number
-      availableSupply: number
-      volume24h: number
-    }
-  }
-  tokens: Array<{
-    tokenInfo: {
-      address: string
-      name: string
-      symbol: string
-      decimals: string
-      price: {
-        rate: number
-        diff: number
-        diff7d: number
-        ts: number
-        marketCapUsd: number
-        availableSupply: number
-        volume24h: number
-      }
-    }
-    balance: number
-  }>
-}
-
-export interface Transaction {
-  timestamp: number
-  from: string
-  to: string
-  hash: string
-  value: number
-  uniqueId?: string
-  tokenInfo?: {
-    address: string
-    name: string
-    symbol: string
-    decimals: number
-  }
-  type: string
-  input: string
-  success: boolean
-}
-
-export interface TransactionResponse {
-  operations: Transaction[]
-  hasMore: boolean
-  total: number
-}
-
-export async function getAddressInfo(address: string): Promise<AddressInfo> {
+): Promise<AddressInfoResponse> {
   const response = await fetch(
     `${ETHPLORER_API_URL}/getAddressInfo/${address}?apiKey=${ETHPLORER_API_KEY}`
   )
