@@ -22,6 +22,7 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
     tokens,
     error,
     isLoading,
+    isFetching,
     currentPage,
     hasMore,
     handlePageChange,
@@ -50,10 +51,10 @@ export function WalletBalance({ address, className }: WalletBalanceProps) {
   return (
     <div
       className={clsx(
-        'bg-yellow w-full overflow-hidden rounded-2xl p-4 text-secondary transition-all duration-300 sm:p-6 md:p-8',
+        'w-full overflow-hidden rounded-2xl bg-yellow p-4 text-secondary transition-all duration-300 sm:p-6 md:p-8',
         'min-h-[300px] xl:min-h-[400px]',
         {
-          'animate-pulse': isLoading,
+          'animate-pulse': isLoading || isFetching,
         },
         className
       )}

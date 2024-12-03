@@ -7,6 +7,7 @@ export function useTransactionHistory(address?: string) {
     data: response,
     error,
     isLoading,
+    isFetching,
   } = useQuery({
     queryKey: ['transactionHistory', address],
     queryFn: () => getTransactionHistory(address!),
@@ -26,6 +27,7 @@ export function useTransactionHistory(address?: string) {
     data: paginatedData,
     error: error ? 'Failed to fetch transaction history' : '',
     isLoading,
+    isFetching,
     currentPage,
     hasMore,
     handlePageChange,

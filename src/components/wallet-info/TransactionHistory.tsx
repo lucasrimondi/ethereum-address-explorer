@@ -21,6 +21,7 @@ export function TransactionHistory({
     data,
     error,
     isLoading,
+    isFetching,
     currentPage,
     hasMore,
     handlePageChange,
@@ -46,10 +47,10 @@ export function TransactionHistory({
   return (
     <div
       className={clsx(
-        'bg-green w-full overflow-hidden rounded-2xl p-4 text-secondary transition-all duration-300 sm:p-6 md:p-8',
+        'w-full overflow-hidden rounded-2xl bg-green p-4 text-secondary transition-all duration-300 sm:p-6 md:p-8',
         'min-h-[300px] xl:min-h-[400px]',
         {
-          'animate-pulse': isLoading,
+          'animate-pulse': isLoading || isFetching,
         },
         className
       )}
@@ -58,7 +59,7 @@ export function TransactionHistory({
         className={clsx(
           'h-full w-full overflow-hidden rounded-3xl bg-primary p-4 text-secondary transition-all duration-300 sm:p-6 md:p-8',
           {
-            'animate-pulse': isLoading,
+            'animate-pulse': isLoading || isFetching,
           },
           className
         )}
