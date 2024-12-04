@@ -23,7 +23,7 @@ export function Header() {
           </div>
         </div>
         <div className="mx-auto flex max-w-[1000px] flex-col items-center gap-4 px-4 py-4 sm:px-6 sm:py-8">
-          <p className="text-center text-base text-xs text-primary sm:text-base md:text-lg lg:text-xl">
+          <p className="text-center text-xs text-primary sm:text-base md:text-lg lg:text-xl">
             Enter your Ethereum address and dive into your wallet’s journey —
             track balances, transactions, and more!
           </p>

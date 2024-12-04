@@ -52,7 +52,7 @@ export function AddressForm() {
               onChange={(e) => handleAddressChange(e.target.value)}
               placeholder="Please enter a valid Ethereum address (0x...)"
               error={error}
-              className="w-full text-sm sm:text-base lg:text-lg"
+              className="w-full text-[10px] sm:text-base lg:text-lg"
               style={{ letterSpacing: '0.5px' }}
               maxLength={42}
             />

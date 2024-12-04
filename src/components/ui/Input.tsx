@@ -23,7 +23,10 @@ export function Input({ className, error, ...props }: InputProps) {
         {...props}
       />
       {error && (
-        <p className="mt-2 text-sm text-red-500 lg:text-base" role="alert">
+        <p
+          className="ml-2 mt-2 text-[10px] text-red-500 sm:text-xs lg:text-base"
+          role="alert"
+        >
           {error}
         </p>
       )}
