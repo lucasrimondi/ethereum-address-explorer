@@ -3,20 +3,20 @@
 import { useMemo, useState } from 'react'
 import { Wallet, Loader2, ChevronDown, Eye, EyeOff } from 'lucide-react'
 import { formatUSD } from '@/lib/utils/format'
-import { TokensList } from './TokensList'
 import { AddressDisplay } from './AddressDisplay'
 import { IconButton } from '../ui/IconButton'
 import clsx from 'clsx'
 import { useAddressBalance } from '../../lib/api/query-hooks/useAddressBalance'
 import { CardInitialState } from '../ui/CardInitialState'
 import { CardErrorState } from '../ui/CardErrorState'
+import { TokensList } from './TokensList'
 
-interface WalletBalanceProps {
+interface AddressBalanceProps {
   address: string
   className?: string
 }
 
-export function WalletBalance({ address, className }: WalletBalanceProps) {
+export function AddressBalance({ address, className }: AddressBalanceProps) {
   const [isVisible, setIsVisible] = useState(true)
   const {
     tokens,

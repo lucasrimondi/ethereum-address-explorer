@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import { getAddressInfo } from '../ethplorer'
 import { useTokenData } from '@/lib/hooks/useTokenData'
 import { usePagination } from '@/lib/hooks/usePagination'
+import { addressService } from '../services/address'
 
 export function useAddressBalance(address?: string) {
   const { data, error, isLoading, isFetching } = useQuery({
     queryKey: ['addressInfo', address],
-    queryFn: () => getAddressInfo(address!),
+    queryFn: () => addressService.getAddressInfo(address!),
     enabled: !!address,
   })
 

@@ -45,6 +45,7 @@ export interface Transaction {
     symbol: string
     decimals: number
   }
+  transactionHash: string
   type: string
   input: string
   success: boolean

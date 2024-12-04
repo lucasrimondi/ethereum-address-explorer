@@ -1,4 +1,4 @@
-import { AddressForm } from '../form/AddressForm'
+import { AddressForm } from '../form-address-data/AddressForm'
 
 export function MainContent() {
   return (

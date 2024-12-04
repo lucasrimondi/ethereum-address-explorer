@@ -1,9 +1,7 @@
-import { ETHPLORER_API_KEY, ETHPLORER_API_URL } from '../config'
-import { AddressInfoResponse, TransactionResponse } from './dto/response.dto'
+import { ETHPLORER_API_KEY, ETHPLORER_API_URL } from '../../config'
+import { AddressInfoResponse, TransactionResponse } from '../dto/response.dto'
 
-export async function getAddressInfo(
-  address: string
-): Promise<AddressInfoResponse> {
+async function getAddressInfo(address: string): Promise<AddressInfoResponse> {
   const response = await fetch(
     `${ETHPLORER_API_URL}/getAddressInfo/${address}?apiKey=${ETHPLORER_API_KEY}`
   )
@@ -15,7 +13,7 @@ export async function getAddressInfo(
   return response.json()
 }
 
-export async function getTransactionHistory(
+async function getTransactionHistory(
   address: string
 ): Promise<TransactionResponse> {
   const response = await fetch(
@@ -26,11 +24,10 @@ export async function getTransactionHistory(
     throw new Error('Failed to fetch transaction history')
   }
 
-  const data = await response.json()
+  return response.json()
+}
 
-  return {
-    operations: data.operations || [],
-    hasMore: false,
-    total: data.operations?.length || 0,
-  }
+export const addressService = {
+  getAddressInfo,
+  getTransactionHistory,
 }

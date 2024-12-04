@@ -1,16 +1,16 @@
 'use client'
 
-import { WalletBalance } from './WalletBalance'
 import { TransactionHistory } from './TransactionHistory'
+import { AddressBalance } from './AddressBalance'
 
-interface WalletInfoProps {
+interface AddressDataProps {
   address: string
 }
 
-export function WalletInfo({ address }: WalletInfoProps) {
+export function AddressData({ address }: AddressDataProps) {
   return (
     <div className="grid w-full gap-4 xl:grid-cols-2">
-      <WalletBalance address={address} />
+      <AddressBalance address={address} />
       <TransactionHistory address={address} />
     </div>
   )

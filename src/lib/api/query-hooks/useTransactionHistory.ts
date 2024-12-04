@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import { getTransactionHistory } from '../ethplorer'
 import { usePagination } from '@/lib/hooks/usePagination'
+import { addressService } from '../services/address'
 
 export function useTransactionHistory(address?: string) {
   const {
@@ -10,13 +10,13 @@ export function useTransactionHistory(address?: string) {
     isFetching,
   } = useQuery({
     queryKey: ['transactionHistory', address],
-    queryFn: () => getTransactionHistory(address!),
+    queryFn: () => addressService.getTransactionHistory(address!),
     enabled: !!address,
   })
 
   const transactions = response?.operations || []
   const {
-    items: paginatedData,
+    items: paginatedTransactions,
     currentPage,
     hasMore,
     handlePageChange,
@@ -24,7 +24,7 @@ export function useTransactionHistory(address?: string) {
   } = usePagination(transactions)
 
   return {
-    data: paginatedData,
+    transactions: paginatedTransactions,
     error: error ? 'Failed to fetch transaction history' : '',
     isLoading,
     isFetching,

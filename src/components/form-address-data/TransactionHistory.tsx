@@ -2,11 +2,11 @@
 
 import { Loader2, ArrowLeftRight } from 'lucide-react'
 import { useTransactionHistory } from '@/lib/api/query-hooks/useTransactionHistory'
-import { TransactionItem } from './TransactionItem'
 import { Pagination } from '../ui/Pagination'
 import clsx from 'clsx'
 import { CardInitialState } from '../ui/CardInitialState'
 import { CardErrorState } from '../ui/CardErrorState'
+import { TransactionItem } from './TransactionItem'
 
 interface TransactionHistoryProps {
   address: string
@@ -18,7 +18,7 @@ export function TransactionHistory({
   className,
 }: TransactionHistoryProps) {
   const {
-    data,
+    transactions,
     error,
     isLoading,
     isFetching,
@@ -66,7 +66,7 @@ export function TransactionHistory({
       >
         <div className="mb-4 flex items-baseline justify-between">
           <h2 className="text-lg font-semibold sm:text-xl lg:text-2xl">
-            Recent Token Transfers
+            Transactions
           </h2>
           {totalTransactions > 0 && (
             <span className="text-xs text-secondary/70 lg:text-sm">
@@ -81,14 +81,14 @@ export function TransactionHistory({
         ) : (
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              {data.map((transaction, index) => (
+              {transactions.map((transaction, index) => (
                 <TransactionItem
                   key={index}
                   transaction={transaction}
                   userAddress={address}
                 />
               ))}
-              {data.length === 0 && (
+              {transactions.length === 0 && (
                 <p className="mt-8 text-center text-secondary/50 lg:text-lg">
                   No transfers found
                 </p>

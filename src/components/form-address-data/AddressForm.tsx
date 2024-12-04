@@ -5,8 +5,8 @@ import { ArrowRight, RotateCw } from 'lucide-react'
 import { isValidEthereumAddress } from '@/lib/utils/validation'
 import { Input } from '@/components/ui/Input'
 import { IconButton } from '@/components/ui/IconButton'
-import { WalletInfo } from '../wallet-info/WalletInfo'
 import { useQueryClient } from '@tanstack/react-query'
+import { AddressData } from './AddressData'
 
 export function AddressForm() {
   const [address, setAddress] = useState('')
@@ -74,7 +74,7 @@ export function AddressForm() {
           />
         </div>
       </form>
-      <WalletInfo address={submittedAddress} />
+      <AddressData address={submittedAddress} />
     </>
   )
 }
