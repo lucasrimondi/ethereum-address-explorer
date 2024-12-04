@@ -27,7 +27,7 @@ export function Footer() {
               alt="GitHub"
               width={32}
               height={32}
-              className="h-8 w-8 transform transition-transform duration-300 ease-in-out hover:scale-110"
+              className="h-8 w-8 transform transition-transform duration-300 ease-in-out hover:scale-110 sm:h-10 sm:w-10"
             />
           </Link>
         </div>
