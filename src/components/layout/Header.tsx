@@ -6,7 +6,7 @@ import { Badge } from '../ui/Badge'
 export function Header() {
   return (
     <header className="w-full">
-      <div className="bg-blue mx-auto w-full rounded-3xl">
+      <div className="mx-auto w-full rounded-3xl bg-blue">
         <div className="flex flex-col items-start gap-4 px-4 py-4 sm:px-6 sm:py-8">
           <div className="flex gap-1 text-center">
             <Badge>
@@ -16,8 +16,8 @@ export function Header() {
             </Badge>
             <Badge className="md:px-6">
               <Search
-                className="text-blue h-4 w-4 transform transition-transform duration-300 ease-in-out hover:scale-110 sm:h-6 sm:w-6 md:h-8 md:w-8"
-                strokeWidth={4}
+                className="h-4 w-4 transform text-blue transition-transform duration-300 ease-in-out hover:scale-110 sm:h-6 sm:w-6 md:h-8 md:w-8"
+                strokeWidth={3}
               />
             </Badge>
           </div>

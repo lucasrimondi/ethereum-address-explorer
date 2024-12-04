@@ -13,6 +13,9 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   title: 'reXplorer',
   description: 'explore your ethereum address',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
