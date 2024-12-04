@@ -7,6 +7,7 @@
 # reXplorer - Frontend Challenge
 
 reXplorer is a sleek and intuitive Ethereum address explorer designed to provide a seamless user experience. It’s a fully responsive web app, developed with React, TypeScript, Next.js and styled beautifully with Tailwind CSS.
+
 Simply enter any public Ethereum address to instantly access a comprehensive overview of:
 
 - Total Balance: See the total value of all tokens in your wallet at a glance.
@@ -14,6 +15,7 @@ Simply enter any public Ethereum address to instantly access a comprehensive ove
 - Transaction History: Explore recent transactions with a user-friendly display that prioritizes clarity and usability.
 
 For those who need deeper insights, each transaction includes a direct link to its corresponding Etherscan page for additional details.
+
 Whether you’re tracking your own wallet or exploring the blockchain, reXplorer offers a beautiful interface and smooth experience to make navigating Ethereum data effortless.
 
 
@@ -42,7 +44,7 @@ To start dev server:
 
 ## Links 🔗
 
-- Deployment on Vercel (live site URL): [Link](https://ethereum-address-explorer-r3n3m4g82-lucasrimondis-projects.vercel.app)
+- Deployment on Vercel (live site URL): [Link](https://ethereum-address-explorer-iota.vercel.app)
 
 ## Author 👤
 
