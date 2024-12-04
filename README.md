@@ -1,5 +1,5 @@
 <div align="center">
-<img width="279" alt="rexplorer-logo" src="https://github.com/user-attachments/assets/dc79f9d2-8c05-4a1a-baf5-7dce870c67d3">
+<img width="279" alt="rexplorer-logo" src="https://github.com/user-attachments/assets/a06d9652-2e98-4346-8ecb-ef0257b69dd8">
 
 
 </div>
