@@ -12,7 +12,7 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: 'reXplorer',
-  description: 'explore your ethereum address',
+  description: 'Explore your Ethereum address',
   icons: {
     icon: '/favicon.ico',
   },

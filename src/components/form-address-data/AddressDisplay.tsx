@@ -27,7 +27,7 @@ function AddressDisplayComponent({ address, className }: AddressDisplayProps) {
 
   return (
     <div className={clsx('flex items-center gap-1 sm:gap-2', className)}>
-      <code className="rounded-lg bg-secondary/5 px-1.5 py-0.5 font-mono text-[8px] text-secondary/70 sm:px-2 sm:py-1 sm:text-base">
+      <code className="rounded-lg bg-secondary/5 px-1.5 py-0.5 text-[8px] text-secondary/70 sm:px-2 sm:py-1 sm:text-base">
         {formatAddress(address)}
       </code>
       <IconButton

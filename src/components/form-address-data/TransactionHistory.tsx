@@ -47,7 +47,7 @@ export function TransactionHistory({
   return (
     <div
       className={clsx(
-        'w-full overflow-hidden rounded-2xl bg-green p-4 text-secondary transition-all duration-300 sm:p-6 md:p-8',
+        'w-full rounded-2xl bg-green p-4 transition-all duration-300 sm:p-6 md:p-8',
         'min-h-[300px] xl:min-h-[400px]',
         {
           'animate-pulse': isLoading || isFetching,
@@ -65,9 +65,7 @@ export function TransactionHistory({
         )}
       >
         <div className="mb-4 flex items-baseline justify-between">
-          <h2 className="text-lg font-semibold sm:text-xl lg:text-2xl">
-            Transactions
-          </h2>
+          <h2 className="text-lg sm:text-xl lg:text-2xl">Transactions</h2>
           {totalTransactions > 0 && (
             <span className="text-xs text-secondary/70 lg:text-sm">
               {totalTransactions} total

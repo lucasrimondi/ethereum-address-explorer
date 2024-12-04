@@ -47,7 +47,7 @@ function TransactionItemComponent({
             ) : (
               <ArrowUpRight className="h-4 w-4 text-footer lg:h-5 lg:w-5" />
             )}
-            <span className="font-medium">
+            <span>
               {parseFloat(value.toString()).toFixed(6)} {symbol}
             </span>
           </div>
@@ -57,11 +57,11 @@ function TransactionItemComponent({
         </div>
         <div className="flex items-center gap-2 text-xs lg:text-base">
           <span className="text-secondary/50">From:</span>
-          <code className="font-mono">{formatAddress(transaction.from)}</code>
+          <code>{formatAddress(transaction.from)}</code>
         </div>
         <div className="flex items-center gap-2 text-xs lg:text-base">
           <span className="text-secondary/50">To:</span>
-          <code className="font-mono">{formatAddress(transaction.to)}</code>
+          <code>{formatAddress(transaction.to)}</code>
         </div>
       </div>
     </a>

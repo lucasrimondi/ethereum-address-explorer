@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto w-full rounded-3xl bg-footer">
         <div className="flex flex-col items-center justify-between gap-6 px-6 py-6 sm:flex-row sm:py-8">
           <div className="flex flex-col space-y-0.5 text-center sm:text-left">
-            <p className="text-xs font-medium text-secondary sm:text-base md:text-lg">
+            <p className="text-xs text-secondary sm:text-base md:text-lg">
               reXplorer @ reown Frontend Challenge
             </p>
             <p className="text-xs text-secondary sm:text-base md:text-lg">

@@ -91,7 +91,7 @@ export function AddressBalance({ address, className }: AddressBalanceProps) {
                   {address && <AddressDisplay address={address} />}
                 </div>
               </div>
-              <span className="font-mono text-xl font-bold md:text-2xl lg:text-4xl">
+              <span className="text-xl font-bold md:text-2xl lg:text-4xl">
                 {isVisible ? formatUSD(totalBalance) : '••••••'}
               </span>
             </div>
