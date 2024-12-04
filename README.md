@@ -20,7 +20,7 @@ Whether you’re tracking your own wallet or exploring the blockchain, reXplorer
 ## Built with 🔧
 
 - React with Typescript
-- NextJS for infrastructure
+- NextJS
 - Tailwind CSS
 - react-query for managing API fetching and states.
 - helper libs: ethers, lucide-react (icons), clsx (for handling classNames), date-fns
