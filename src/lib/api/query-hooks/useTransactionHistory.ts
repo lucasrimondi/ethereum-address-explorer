@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { usePagination } from '@/lib/hooks/usePagination'
 import { addressService } from '../services/address'
 
-export function useTransactionHistory(address?: string) {
+export function useTransactionHistory(address: string) {
   const {
     data: response,
     error,
