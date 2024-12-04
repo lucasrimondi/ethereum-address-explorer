@@ -42,8 +42,7 @@ To start dev server:
 
 ## Links 🔗
 
-- Deployment on Vercel (live site URL): [Link](https://todo)
-  
+- Deployment on Vercel (live site URL): [Link](https://ethereum-address-explorer-r3n3m4g82-lucasrimondis-projects.vercel.app)
 
 ## Author 👤
 
