@@ -65,7 +65,9 @@ export function TransactionHistory({
         )}
       >
         <div className="mb-4 flex items-baseline justify-between">
-          <h2 className="text-lg sm:text-xl lg:text-2xl">Transactions</h2>
+          <h2 className="text-sm font-bold sm:text-lg md:text-xl lg:text-3xl">
+            Transactions
+          </h2>
           {totalTransactions > 0 && (
             <span className="text-xs text-secondary/70 lg:text-sm">
               {totalTransactions} total
