@@ -19,7 +19,6 @@ export function AddressForm() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-
     if (shouldRefetch) {
       queryClient.invalidateQueries({ queryKey: ['addressInfo', address] })
       queryClient.invalidateQueries({

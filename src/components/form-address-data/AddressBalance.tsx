@@ -19,6 +19,7 @@ interface AddressBalanceProps {
 export function AddressBalance({ address, className }: AddressBalanceProps) {
   const [isVisible, setIsVisible] = useState(true)
   const {
+    allTokens,
     tokens,
     error,
     isLoading,
@@ -30,8 +31,8 @@ export function AddressBalance({ address, className }: AddressBalanceProps) {
   } = useAddressBalance(address)
 
   const totalBalance = useMemo(
-    () => tokens.reduce((sum, token) => sum + token.balanceUSD, 0),
-    [tokens]
+    () => allTokens.reduce((sum, token) => sum + token.balanceUSD, 0),
+    [allTokens]
   )
 
   if (!address) {
@@ -66,7 +67,7 @@ export function AddressBalance({ address, className }: AddressBalanceProps) {
       ) : (
         <div className="flex h-full flex-col gap-4 sm:gap-6">
           <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-row items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <Wallet className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8" />
                 <div className="flex flex-col gap-1">

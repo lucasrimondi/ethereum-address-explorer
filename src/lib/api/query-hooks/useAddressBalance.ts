@@ -20,6 +20,7 @@ export function useAddressBalance(address: string) {
   } = usePagination(tokens, { itemsPerPage: 7 })
 
   return {
+    allTokens: tokens,
     tokens: paginatedTokens,
     error: error ? 'Failed to fetch address information' : '',
     isLoading,
